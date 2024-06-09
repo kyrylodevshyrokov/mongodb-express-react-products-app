@@ -1,8 +1,8 @@
 const mongodb = require("mongodb");
+require("dotenv").config();
 
 const MongoClient = mongodb.MongoClient;
-const mongoDbUrl =
-  "mongodb+srv://Kyrylo:XxHLeGcG25AUtpdt@mongo-products-cluster.pyzfaov.mongodb.net/shop?retryWrites=true&w=majority&appName=mongo-products-cluster";
+const mongoDbUrl = process.env.MONGO_DB_URL;
 
 let _db;
 
