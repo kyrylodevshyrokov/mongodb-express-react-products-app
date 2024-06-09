@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
-  // Set CORS headers so that the React SPA is able to communicate with this server
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",

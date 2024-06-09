@@ -36,14 +36,12 @@ router.post("/login", (req, res, next) => {
         message: "Authentication failed, invalid username or password.",
       });
     });
-
-  // res.status(200).json({ token: token, user: { email: 'dummy@dummy.com' } });
 });
 
 router.post("/signup", (req, res, next) => {
   const email = req.body.email;
   const pw = req.body.password;
-  // Hash password before storing it in database => Encryption at Rest
+
   bcrypt
     .hash(pw, 12)
     .then((hashedPW) => {
@@ -66,7 +64,6 @@ router.post("/signup", (req, res, next) => {
       console.log(err);
       res.status(500).json({ message: "Creating the user failed." });
     });
-  // Add user to database
 });
 
 module.exports = router;
