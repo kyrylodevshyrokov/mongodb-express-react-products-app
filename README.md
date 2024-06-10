@@ -1,5 +1,9 @@
 # Online Shop Application
 
+## About
+
+This project is a small online store where registered users can view, purchase, add, and modify products. 
+
 ## Features
 
 - Users can register, log in and log out in the online store.
