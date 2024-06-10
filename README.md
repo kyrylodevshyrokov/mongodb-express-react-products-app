@@ -20,7 +20,7 @@ This project is a small online store where registered users can view, purchase, 
 
 1. Clone the repository locally to your machine.
 2. Run the command `npm install` to download all project dependencies.
-3. 4. Fill `.env` file. Here is an example:
+3. Fill `.env` file. Here is an example:
 ```javascript
 PORT=3000
 MONGO_DB_URL=your_mongo_db_atlas_url
