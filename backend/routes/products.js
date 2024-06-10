@@ -1,5 +1,6 @@
 const Router = require("express").Router;
 const mongodb = require("mongodb");
+const status = require("http-status");
 
 const db = require("../db");
 
@@ -10,15 +11,6 @@ const router = Router();
 
 // Get list of products products
 router.get("/", (req, res, next) => {
-  const queryPage = req.query.page;
-  const pageSize = 1;
-  // let resultProducts = [...products];
-  // if (queryPage) {
-  //   resultProducts = products.slice(
-  //     (queryPage - 1) * pageSize,
-  //     queryPage * pageSize
-  //   );
-  // }
   const products = [];
 
   db.getDb()
@@ -26,8 +18,6 @@ router.get("/", (req, res, next) => {
     .collection("products")
     .find()
     .sort({ price: -1 })
-    // .skip((queryPage - 1) * pageSize)
-    // .limit(pageSize)
     .toArray()
     .then((productDocs) => {
       productDocs.forEach((doc) => {
@@ -36,11 +26,11 @@ router.get("/", (req, res, next) => {
       });
     })
     .then((result) => {
-      res.status(200).json(products);
+      res.status(status.OK).json(products);
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ message: "An error occurred" });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ message: "An error occurred" });
     });
 });
 
@@ -52,11 +42,11 @@ router.get("/:id", (req, res, next) => {
     .findOne({ _id: new ObjectId(req.params.id) })
     .then((productDoc) => {
       productDoc.price = productDoc.price.toString();
-      res.status(200).json(productDoc);
+      res.status(status.OK).json(productDoc);
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ message: "An error occurred" });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ message: "An error occurred" });
     });
 });
 
@@ -77,12 +67,12 @@ router.post("", (req, res, next) => {
     .then((result) => {
       console.log(result);
       res
-        .status(201)
+        .status(status.CREATED)
         .json({ message: "Product added", productId: result.insertedId });
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ message: "An error occurred" });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ message: "An error occurred" });
     });
 });
 
@@ -102,12 +92,12 @@ router.patch("/:id", (req, res, next) => {
     .updateOne({ _id: new ObjectId(req.params.id) }, { $set: updatedProduct })
     .then((result) => {
       res
-        .status(200)
+        .status(status.OK)
         .json({ message: "Product updated", productId: req.params.id });
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ message: "An error occurred" });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ message: "An error occurred" });
     });
 });
 
@@ -119,11 +109,11 @@ router.delete("/:id", (req, res, next) => {
     .collection("products")
     .deleteOne({ _id: new ObjectId(req.params.id) })
     .then((result) => {
-      res.status(200).json({ message: "Product deleted" });
+      res.status(status.OK).json({ message: "Product deleted" });
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ message: "An error occurred" });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ message: "An error occurred" });
     });
 });
 

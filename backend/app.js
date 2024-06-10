@@ -1,4 +1,5 @@
 const path = require("path");
+require("dotenv").config();
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -6,6 +7,8 @@ const db = require("./db");
 
 const productRoutes = require("./routes/products");
 const authRoutes = require("./routes/auth");
+
+const PORT = process.env.PORT;
 
 const app = express();
 
@@ -29,6 +32,6 @@ db.initDb((err, db) => {
   if (err) {
     console.log(err);
   } else {
-    app.listen(3100);
+    app.listen(PORT);
   }
 });

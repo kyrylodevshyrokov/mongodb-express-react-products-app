@@ -1,6 +1,7 @@
 const Router = require("express").Router;
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const status = require("http-status");
 
 const db = require("../db");
 
@@ -26,13 +27,13 @@ router.post("/login", (req, res, next) => {
         throw Error();
       }
       const token = createToken();
-      res.status(200).json({
+      res.status(status.OK).json({
         message: "Authentication succeeded",
         token,
       });
     })
     .catch((err) => {
-      res.status(401).json({
+      res.status(status.UNAUTHORIZED).json({
         message: "Authentication failed, invalid username or password.",
       });
     });
@@ -52,17 +53,17 @@ router.post("/signup", (req, res, next) => {
         .then((result) => {
           console.log(result);
           const token = createToken();
-          res.status(201).json({ token: token, user: { email } });
+          res.status(status.CREATED).json({ token: token, user: { email } });
         })
         .catch((err) => {
           console.log(err);
-          res.status(500).json({ message: "Creating the user failed." });
+          res.status(status.INTERNAL_SERVER_ERROR).json({ message: "Creating the user failed." });
         });
       console.log(hashedPW);
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ message: "Creating the user failed." });
+      res.status(status.INTERNAL_SERVER_ERROR).json({ message: "Creating the user failed." });
     });
 });
 
