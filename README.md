@@ -20,8 +20,13 @@ This project is a small online store where registered users can view, purchase, 
 
 1. Clone the repository locally to your machine.
 2. Run the command `npm install` to download all project dependencies.
-3. Start the server side of the application with the command `npm run start:server`.
-4. In a new terminal, start the client side of the application with the command `npm start`. The frontend part of the application will be available on port 3100.
+3. 4. Fill `.env` file. Here is an example:
+```javascript
+PORT=3000
+MONGO_DB_URL=your_mongo_db_atlas_url
+```
+4. Start the server side of the application with the command `npm run start:server`.
+5. In a new terminal, start the client side of the application with the command `npm start`. The frontend part of the application will be available on port 3100.
 
 ## API Endpoints
 
@@ -32,7 +37,7 @@ This project is a small online store where registered users can view, purchase, 
 - Method: **POST**
 - URL: {{URL}}/signup
 - Data:
-```bash
+```javascript
 {
     "email": "john@gmail.com",
     "password": "password"
@@ -46,7 +51,7 @@ This project is a small online store where registered users can view, purchase, 
 - Method: **POST**
 - URL: {{URL}}/login
 - Data:
-```bash
+```javascript
 {
     "email": "john@gmail.com",
     "password": "password"
@@ -76,7 +81,7 @@ This project is a small online store where registered users can view, purchase, 
 - Method: **POST**
 - URL: {{URL}}/products
 - Data:
-```bash
+```javascript
 {
     "name": "A book",
     "price": "20.50",
@@ -92,7 +97,7 @@ This project is a small online store where registered users can view, purchase, 
 - Method: **PATCH**
 - URL: {{URL}}/products/:id
 - Data:
-```bash
+```javascript
 {
     "name": "A book",
     "price": "20.50",
