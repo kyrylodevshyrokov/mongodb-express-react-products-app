@@ -11,10 +11,10 @@ This project is a small online store where registered users can view, purchase, 
 
 ## Technologies
 
-- Express: a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
-- MongoDB: a source-available, cross-platform, document-oriented database program.
-- MongoDB Atlas: the Cloud-Native Document Database as a Service.
-- React: a free and open-source front-end JavaScript library for building user interfaces based on components.
+- **Express:** a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+- **MongoDB:** a source-available, cross-platform, document-oriented database program.
+- **MongoDB Atlas:** the Cloud-Native Document Database as a Service.
+- **React:** a free and open-source front-end JavaScript library for building user interfaces based on components.
 
 ## Getting Started
 
